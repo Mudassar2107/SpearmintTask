@@ -62,8 +62,8 @@ const Products = () => {
   const displayedProducts = recommendedProducts
     ? recommendedProducts
     : activeCategory === "All"
-    ? PRODUCTS
-    : PRODUCTS.filter((p) => p.category === activeCategory);
+      ? PRODUCTS
+      : PRODUCTS.filter((p) => p.category === activeCategory);
 
   const handleAskAI = async () => {
     if (!preference.trim()) return;
@@ -72,7 +72,7 @@ const Products = () => {
     setRecommendedProducts(null);
 
     try {
-      const response = await fetch("https://spearminttask.onrender.com", {
+      const response = await fetch("https://spearminttask.onrender.com/api/recommend", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -204,11 +204,10 @@ const Products = () => {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                activeCategory === category
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${activeCategory === category
                   ? "bg-indigo-600 text-white shadow-md"
                   : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
-              }`}
+                }`}
             >
               {category}
             </button>
